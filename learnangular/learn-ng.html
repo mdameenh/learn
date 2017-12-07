@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.5/angular.min.js"></script>
+</head>
+
+<body ng-app="myapp">
+  <div ng-controller="myctrlr"> <!-- ng-controller defines is controller-->
+    <h2 ng-show="helloTo.showit" ng-bind="'<b>Hello1 ' + helloTo.title + ' !<b>'">Hello !</h2>
+    <h2 ng-hide="helloTo.showit" >Hello2 {{helloTo.title}}!</h2>
+  </div>
+
+  <div ng-controller="ctrlrSwitch">
+    <div ng-switch on="myswitch">
+      <div ng-switch-when="1">1</div>
+      <div ng-switch-when="2">2</div>
+      <div ng-switch-default>3</div>
+    </div>
+  </div>
+
+  <div ng-controller="includectrlr"> <!-- ng-controller defines is controller-->
+    <div ng-include="showIt && 'moviecritic.html'"></div>
+  </div>
+
+  <div ng-controller="repeatFilter"> <!-- ng-controller defines is controller-->
+    <div ng-repeat="x in names">{{x}}</div>
+  </div>
+
+  <script>
+  app = angular.module("myapp", [])
+
+  app.controller("myctrlr", function($scope){
+    $scope.helloTo = {};
+    $scope.helloTo.title = "to AngularJS";
+    $scope.helloTo.showit = false;
+  });
+
+  app.controller("ctrlrSwitch", function($scope){
+    $scope.myswitch = 1;
+    $scope.myswitch = 3;
+
+  });
+
+  app.controller("includectrlr", function($scope){
+    $scope.showIt = true;
+  });
+
+  app.controller("repeatFilter", function($scope){
+    $scope.names = ['Ameen', 'Amee', 'Ame', 'Am', ];
+  });
+  </script>
+
+</body>
+</html>
